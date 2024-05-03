@@ -1,0 +1,25 @@
+#!/bin/sh
+
+path="/Users/mac/ShellTool/help/"
+arg=$1
+len=${#arg}
+
+if [ $# = 1 ] ; then
+	if [ $1 = "-add" ] ; then
+		vim ${path}help
+	else
+		${path}${arg:1:len}.sh
+	fi
+
+elif [ $# = 2 ] ; then
+	if [ $1 = "-add" ] ; then
+		vim ${path}$2.sh
+		chmod +x ${path}$2.sh
+		vim ${path}ls.sh
+	elif [ $1 = "-rm" ] ; then
+		sudo rm ${path}$2.sh
+		vim ${path}ls.sh
+	fi
+else
+	echo "参数个数错误"
+fi
